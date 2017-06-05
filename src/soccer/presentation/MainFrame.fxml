@@ -14,7 +14,7 @@
             <Button mnemonicParsing="false" onAction="#ShowStadium" text="Stadium" />
             <Button mnemonicParsing="false" onAction="#ShowCoach" text="Coach" />
             <Button mnemonicParsing="false" text="Dealer" />
-            <Button mnemonicParsing="false" text="Player" />
+            <Button mnemonicParsing="false" onAction="#ShowPlayer" text="Player" />
             <Button mnemonicParsing="false" text="League" />
             <Button mnemonicParsing="false" onAction="#exit" text="Exit" />
          </children>

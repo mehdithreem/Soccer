@@ -16,7 +16,13 @@ public class PlayerRepo {
 
     public List<Player> getByTeam(String team, Integer year) {
         // #TODO implement
-        return new ArrayList<>();
+        List<Player> result = new ArrayList<>();
+
+        result.add(new Player("Mahdi", "Goalkeeper", 12,12,12,12,
+                12,12,12,12,12,"bench"));
+        result.add(new Player("Mahdi2", "Goalkeeper", 12,12,12,12,
+                12,12,12,12,12,"forward"));
+        return result;
     }
 
     public List<Player> getAvailables(Integer year) {
