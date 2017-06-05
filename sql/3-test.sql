@@ -1,18 +1,18 @@
 --stadium
 INSERT INTO stadium_data VALUES
-	('azadi', 1000);
+	('azadi', 10);
 INSERT INTO stadium_data VALUES
-	('foolad_e_khoozestan', 2000);
+	('foolad_e_khoozestan', 20);
 INSERT INTO stadium_data VALUES
-	('shahid_kazemi', 1500);
+	('shahid_kazemi', 15);
 INSERT INTO stadium_data VALUES
-	('emam_reza', 1000);
+	('emam_reza', 10);
 INSERT INTO stadium_data VALUES
-	('naghsh_e_jahan', 2000);
+	('naghsh_e_jahan', 20);
 INSERT INTO stadium_data VALUES
-	('shahid_shiroodi', 1500);
+	('shahid_shiroodi', 10);
 INSERT INTO stadium_data VALUES
-	('takhti', 1000);
+	('takhti', 10);
 
 --team
 INSERT INTO team VALUES
