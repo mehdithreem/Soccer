@@ -65,4 +65,18 @@ public class MainFrameController {
             e.printStackTrace();
         }
     }
+
+    public void ShowPlayer() {
+        this.updateMoney();
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("presentation/Player.fxml"));
+            AnchorPane stadium = loader.load();
+
+            SharedData.getData().main.getRootLayout().setCenter(stadium);
+            pageName.setText("Player Manager");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
