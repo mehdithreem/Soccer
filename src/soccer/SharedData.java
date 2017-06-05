@@ -13,4 +13,5 @@ public class SharedData {
 
     public Main main;
     public MainFrameController mainFrameController;
+    public Integer currentYear;
 }

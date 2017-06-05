@@ -69,6 +69,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         SharedData.getData().main = this;
+        SharedData.getData().currentYear = 1396;
         this.primaryStage = primaryStage;
         primaryStage.setTitle("Soccer");
         primaryStage.setResizable(false);

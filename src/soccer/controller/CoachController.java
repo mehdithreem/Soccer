@@ -37,13 +37,13 @@ public class CoachController {
         availableDuty.setCellValueFactory(new PropertyValueFactory<>("duty"));
         availableExperience.setCellValueFactory(new PropertyValueFactory<>("experience"));
 
-        available.setItems(FXCollections.observableArrayList(CoachRepo.getRepository().getFreeCoaches()));
+        available.setItems(FXCollections.observableArrayList(CoachRepo.getRepository().getFreeCoaches(SharedData.getData().currentYear)));
     }
 
     public void buySelected() {
         Coach coach = (Coach) available.getSelectionModel().getSelectedItem();
 
-        CoachRepo.getRepository().buyCoach(coach.getName(), Session.getSession().getTeam());
+        CoachRepo.getRepository().buyCoach(coach.getName(), Session.getSession().getTeam(), SharedData.getData().currentYear);
         SharedData.getData().mainFrameController.ShowCoach();
     }
 }

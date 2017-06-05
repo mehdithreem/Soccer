@@ -19,12 +19,12 @@ public class CoachRepo {
         return new ArrayList<>();
     }
 
-    public List<Coach> getFreeCoaches() {
+    public List<Coach> getFreeCoaches(Integer year) {
         // #TODO implement
         return new ArrayList<>();
     }
 
-    public void buyCoach(String name, String team) {
+    public void buyCoach(String name, String team, Integer year) {
         // #TODO implement
     }
 }
