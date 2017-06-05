@@ -24,6 +24,7 @@ public class CoachController {
     @FXML private TableColumn availableName;
     @FXML private TableColumn availableDuty;
     @FXML private TableColumn availableExperience;
+    @FXML private TableColumn availablePrice;
 
     @FXML
     private void initialize() {
@@ -36,6 +37,7 @@ public class CoachController {
         availableName.setCellValueFactory(new PropertyValueFactory<>("name"));
         availableDuty.setCellValueFactory(new PropertyValueFactory<>("duty"));
         availableExperience.setCellValueFactory(new PropertyValueFactory<>("experience"));
+        availablePrice.setCellValueFactory(new PropertyValueFactory<>("price"));
 
         available.setItems(FXCollections.observableArrayList(CoachRepo.getRepository().getFreeCoaches(SharedData.getData().currentYear)));
     }

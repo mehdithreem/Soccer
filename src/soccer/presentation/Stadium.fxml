@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="340.0" prefWidth="480" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="soccer.controller.StadiumController">
+<AnchorPane prefHeight="340.0" prefWidth="480" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="soccer.controller.StadiumController">
    <children>
       <Text fx:id="stadiumName" layoutX="168.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stadium Name" textAlignment="CENTER">
          <font>
@@ -22,8 +22,8 @@
       <Text fx:id="price" layoutX="323.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1000" />
       <Text fx:id="capacity" layoutX="193.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1003" />
       <Text fx:id="grassPercent" layoutX="344.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100%" textAlignment="RIGHT" />
-      <Text fx:id="seatPercent" layoutX="208.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100%" textAlignment="RIGHT" />
-      <Text fx:id="toiletPercent" layoutX="73.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100%" />
+      <Text fx:id="toiletPercent" layoutX="208.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100%" textAlignment="RIGHT" />
+      <Text fx:id="seatPercent" layoutX="73.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100%" />
       <Label layoutX="83.0" layoutY="90.0" text="Seat">
          <font>
             <Font size="10.0" />

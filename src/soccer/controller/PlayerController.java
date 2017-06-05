@@ -82,7 +82,7 @@ public class PlayerController {
         current.getColumns().add(shirtCol);
 
         for(Field f : Player.class.getDeclaredFields()) {
-            if (f.getName().equals("shirtNumber") || f.getName().equals("role"))
+            if (f.getName().equals("shirtNumber") || f.getName().equals("role") || f.getName().equals("price"))
                 continue;
 
             TableColumn col = new TableColumn(f.getName());

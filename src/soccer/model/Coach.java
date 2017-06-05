@@ -7,11 +7,13 @@ public class Coach {
     private String name;
     private String duty;
     private Integer experience;
+    private Integer price;
 
-    public Coach(String name, String duty, Integer experience) {
+    public Coach(String name, String duty, Integer experience, Integer price) {
         this.name = name;
         this.duty = duty;
         this.experience = experience;
+        this.price = price;
     }
 
     public String getName() {
@@ -36,5 +38,13 @@ public class Coach {
 
     public void setExperience(Integer experience) {
         this.experience = experience;
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
     }
 }

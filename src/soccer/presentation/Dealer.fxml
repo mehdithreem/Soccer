@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="340.0" prefWidth="480" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="soccer.controller.DealerController">
+   <children>
+      <Text fx:id="dealerName" layoutX="185.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dealer Name">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Line endX="300.0" layoutX="140.0" layoutY="67.0" startX="-100.0" />
+      <Text fx:id="leverage" layoutX="230.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LeverageAmount" />
+      <Label layoutX="157.0" layoutY="74.0" text="Leverage" />
+      <Line endX="300.0" layoutX="140.0" layoutY="100.0" startX="-100.0" />
+      <TableView fx:id="available" layoutX="34.0" layoutY="117.0" prefHeight="137.0" prefWidth="412.0">
+        <columns>
+          <TableColumn fx:id="name" prefWidth="137.0" text="Name" />
+          <TableColumn fx:id="availableLeverage" prefWidth="136.0" text="Leverage" />
+            <TableColumn fx:id="price" prefWidth="138.0" text="Price" />
+        </columns>
+      </TableView>
+      <Button layoutX="347.0" layoutY="266.0" mnemonicParsing="false" onAction="#buy" text="Buy Selected" />
+   </children>
+</AnchorPane>

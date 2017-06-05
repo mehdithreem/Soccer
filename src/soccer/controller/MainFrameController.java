@@ -79,4 +79,18 @@ public class MainFrameController {
             e.printStackTrace();
         }
     }
+
+    public void ShowDealer() {
+        this.updateMoney();
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("presentation/Dealer.fxml"));
+            AnchorPane stadium = loader.load();
+
+            SharedData.getData().main.getRootLayout().setCenter(stadium);
+            pageName.setText("Dealer Manager");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

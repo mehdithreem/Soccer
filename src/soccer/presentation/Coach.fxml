@@ -6,7 +6,6 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="340.0" prefWidth="480" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="soccer.controller.CoachController">
    <children>
       <TableView fx:id="current" layoutX="15.0" layoutY="39.0" prefHeight="96.0" prefWidth="451.0">
@@ -20,9 +19,10 @@
       <Label layoutX="16.0" layoutY="144.0" text="Available Coaches" />
       <TableView fx:id="available" layoutX="15.0" layoutY="167.0" prefHeight="113.0" prefWidth="451.0">
         <columns>
-          <TableColumn fx:id="availableName" prefWidth="132.0" text="Name" />
-          <TableColumn fx:id="availableDuty" prefWidth="179.0" text="Duty" />
-            <TableColumn fx:id="availableExperience" prefWidth="139.0" text="Experience" />
+          <TableColumn fx:id="availableName" prefWidth="85.0" text="Name" />
+          <TableColumn fx:id="availableDuty" prefWidth="95.0" text="Duty" />
+            <TableColumn fx:id="availableExperience" prefWidth="113.0" text="Experience" />
+            <TableColumn fx:id="availablePrice" prefWidth="157.0" text="Price" />
         </columns>
       </TableView>
       <Button layoutX="360.0" layoutY="289.0" mnemonicParsing="false" onAction="#buySelected" text="Buy Selected" />

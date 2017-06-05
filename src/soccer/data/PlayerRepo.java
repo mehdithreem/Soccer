@@ -19,9 +19,9 @@ public class PlayerRepo {
         List<Player> result = new ArrayList<>();
 
         result.add(new Player("Mahdi", "Goalkeeper", 12,12,12,12,
-                12,12,12,12,12,"bench"));
+                12,12,12,12,12,"bench", 1200));
         result.add(new Player("Mahdi2", "Goalkeeper", 12,12,12,12,
-                12,12,12,12,12,"forward"));
+                12,12,12,12,12,"forward", 1200));
         return result;
     }
 

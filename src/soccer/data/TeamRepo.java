@@ -46,7 +46,7 @@ public class TeamRepo {
 
             Statement s = c.createStatement();
 
-            s.executeUpdate("insert into team VALUES (\'" + name + "\', 10000)");
+            s.executeUpdate("insert into team VALUES (\'" + name + "\', 900000000)");
 
             s.close();
             c.commit();

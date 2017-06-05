@@ -18,7 +18,9 @@ public class Player {
     private Integer shirtNumber;
     private String role;
 
-    public Player(String name, String expertise, Integer amadegi, Integer ghodrat_badani, Integer ghodrat_pass, Integer toop_giri, Integer ghodrat_golzani, Integer ghodrat_shoot, Integer sorat, Integer darvazebani, Integer shirtNumber, String role) {
+    private Integer price;
+
+    public Player(String name, String expertise, Integer amadegi, Integer ghodrat_badani, Integer ghodrat_pass, Integer toop_giri, Integer ghodrat_golzani, Integer ghodrat_shoot, Integer sorat, Integer darvazebani, Integer shirtNumber, String role, Integer price) {
         this.name = name;
         this.expertise = expertise;
         this.amadegi = amadegi;
@@ -31,6 +33,7 @@ public class Player {
         this.darvazebani = darvazebani;
         this.shirtNumber = shirtNumber;
         this.role = role;
+        this.price = price;
     }
 
     public String getName() {
@@ -127,5 +130,13 @@ public class Player {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
     }
 }

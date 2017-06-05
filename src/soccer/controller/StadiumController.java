@@ -12,6 +12,8 @@ import soccer.data.StadiumRepo;
 import soccer.model.Stadium;
 import soccer.model.StadiumTeam;
 
+import java.text.DecimalFormat;
+
 
 /**
  * Created by mehdithreem on 6/5/2017 AD.
@@ -36,9 +38,13 @@ public class StadiumController {
         stadiumName.setText(stadiumTeam.stadiumName);
         price.setText(String.valueOf(stadiumTeam.price));
         capacity.setText(String.valueOf(stadiumTeam.capacity));
-        grassPercent.setText(String.valueOf(stadiumTeam.grassQuality)+"%");
-        toiletPercent.setText(String.valueOf(stadiumTeam.toiletQuality)+"%");
-        seatPercent.setText(String.valueOf(stadiumTeam.seatQuality)+"%");
+
+        DecimalFormat df = new DecimalFormat();
+        df.setMaximumFractionDigits(2);
+
+        grassPercent.setText(df.format(stadiumTeam.grassQuality*100)+"%");
+        toiletPercent.setText(df.format(stadiumTeam.toiletQuality*100)+"%");
+        seatPercent.setText(df.format(stadiumTeam.seatQuality*100)+"%");
 
         tableName.setCellValueFactory(new PropertyValueFactory<>("name"));
         tableCapacity.setCellValueFactory(new PropertyValueFactory<>("capacity"));
@@ -65,7 +71,7 @@ public class StadiumController {
     public void buyStadium() {
         Stadium stadium = (Stadium) stadiumTable.getSelectionModel().getSelectedItem();
 
-        StadiumRepo.getRepository().buyStadium(stadium.getName(), Session.getSession().getTeam());
+        StadiumRepo.getRepository().buyStadium(stadium, Session.getSession().getTeam());
         SharedData.getData().mainFrameController.ShowStadium();
     }
 

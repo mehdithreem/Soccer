@@ -53,24 +53,24 @@ public class StadiumRepo {
         try{
             Connection c = ConnectionFactory.getConnection();
             Statement s = c.createStatement();
-            ResultSet rs = s.executeQuery("select * from team_stadium where team_name = "+team);
+            ResultSet rs = s.executeQuery("select * from team_stadium where team_name = \'"+team+"\'");
 
+            rs.next();
             stadiumTeam.teamName = team;
             stadiumTeam.stadiumName = rs.getString("stadium_name");
-            stadiumTeam.grassQuality = rs.getInt("grass_quality");
-            stadiumTeam.toiletQuality = rs.getInt("toilet_quality");
-            stadiumTeam.seatQuality = rs.getInt("seat_quality");
+            stadiumTeam.grassQuality = rs.getDouble("grass_quality");
+            stadiumTeam.toiletQuality = rs.getDouble("toilet_quality");
+            stadiumTeam.seatQuality = rs.getDouble("seat_quality");
 
             rs.close();
             s.close();
 
             Statement s2 = c.createStatement();
             ResultSet rs2 = s2.executeQuery
-                    ("select * from stadium where name = '"+ stadiumTeam.stadiumName +"'");
+                    ("select * from stadium where name = \'"+ stadiumTeam.stadiumName +"\'");
+            rs2.next();
             stadiumTeam.price = rs2.getInt("price");
             stadiumTeam.capacity = rs2.getInt("capacity");
-
-            System.out.println("StadiumTeam : "+stadiumTeam.teamName + " ," + stadiumTeam.stadiumName+ " ,"+ stadiumTeam.toiletQuality);
 
             rs2.close();
             s2.close();
@@ -88,16 +88,13 @@ public class StadiumRepo {
         try{
             Connection c = ConnectionFactory.getConnection();
             Statement s = c.createStatement();
-            ResultSet rs = s.executeQuery
-                    ("update team set money = money - "+ 10*(100 - getByTeam(team).grassQuality)+ " where name = "+team );
-
-            rs.close();
+            s.executeUpdate
+                    ("update team set money = money - "+ 10*(100 - getByTeam(team).grassQuality)+ " where name = '"+team+"\'");
             s.close();
 
             Statement s2 = c.createStatement();
-            ResultSet rs2 = s2.executeQuery
-                    ("update team_stadium set grass_quality = 100 where team_name = " + team );
-            rs2.close();
+            s2.executeUpdate
+                    ("update team_stadium set grass_quality = 1 where team_name = '"+team+"\'" );
             s2.close();
 
             c.close();
@@ -111,16 +108,13 @@ public class StadiumRepo {
         try{
             Connection c = ConnectionFactory.getConnection();
             Statement s = c.createStatement();
-            ResultSet rs = s.executeQuery
-                    ("update team set money = money - "+ 15*(100 - getByTeam(team).seatQuality)+ " where name = "+team );
-
-            rs.close();
+            s.executeUpdate
+                    ("update team set money = money - "+ 15*(100 - getByTeam(team).seatQuality)+ " where name = '"+team+"\'");
             s.close();
 
             Statement s2 = c.createStatement();
-            ResultSet rs2 = s2.executeQuery
-                    ("update team_stadium set seat_quality = 100 where team_name = " + team );
-            rs2.close();
+            s2.executeUpdate
+                    ("update team_stadium set seat_quality = 1 where team_name = '"+team+"\'" );
             s2.close();
 
             c.close();
@@ -134,16 +128,13 @@ public class StadiumRepo {
         try{
             Connection c = ConnectionFactory.getConnection();
             Statement s = c.createStatement();
-            ResultSet rs = s.executeQuery
-                    ("update team set money = money - "+ 20*(100 - getByTeam(team).toiletQuality)+ " where name = "+team );
-
-            rs.close();
+            s.executeUpdate
+                    ("update team set money = money - "+ 20*(100 - getByTeam(team).toiletQuality)+ " where name = '"+team+"\'" );
             s.close();
 
             Statement s2 = c.createStatement();
-            ResultSet rs2 = s2.executeQuery
-                    ("update team_stadium set toilet_quality = 100 where team_name = " + team );
-            rs2.close();
+            s2.executeUpdate
+                    ("update team_stadium set toilet_quality = 1 where team_name = '"+team+"\'" );
             s2.close();
 
             c.close();
@@ -153,48 +144,29 @@ public class StadiumRepo {
         }
     }
 
-    public void buyStadium(String stadium, String team) {
-        System.out.println("chete? :"+stadium+team);
+    public void buyStadium(Stadium stadium, String team) {
         try{
             Connection c = ConnectionFactory.getConnection();
-
-            Statement s = c.createStatement();
-            ResultSet rs = s.executeQuery
-                    ("select * from stadium where name = \'"+ stadium +"\'");
-            Integer price = rs.getInt("price");
-            System.out.println("Ba inja umad ke! "+price);
-            rs.close();
-            s.close();
-            c.close();
-
-
-            Connection c1 = ConnectionFactory.getConnection();
             Statement s1 = c.createStatement();
-            ResultSet rs1 = s1.executeQuery
-                    ("update team set money = money - "+ price + " where name = \'"+team+"\'" );
-            rs1.close();
+            s1.executeUpdate
+                    ("update team set money = money - "+ stadium.getPrice() + " where name = \'"+team+"\'" );
             s1.close();
-            System.out.println("inja namiai?! ");
-            c1.close();
 
-
-            Connection c2 = ConnectionFactory.getConnection();
             Statement s2 = c.createStatement();
-            ResultSet rs2 = s2.executeQuery
+            s2.executeUpdate
                     ("with upsert as (" +
                             "  update team_stadium" +
-                            "  set (stadium_name, team_name , grass_quality, toilet_quality, seat_quality) = (\'"+stadium+ "\' , \'"+ team + "\' ,100, 100, 100)" +
+                            "  set (stadium_name, team_name , grass_quality, toilet_quality, seat_quality) = (\'"+stadium+ "\' , \'"+ team + "\' ,1, 1, 1)" +
                             "  where team_name = \'" + team +
                             "\'  returning *)" +
-                            "insert into stadium_name (stadium_name, team_name, grass_quality, toilet_quality, seat_quality)" +
-                            "select \'" +stadium+ "\' , \'"+ team + "\' , 100, 100, 100"+
+                            "insert into team_stadium (stadium_name, team_name)" +
+                            "select \'" +stadium+ "\' , \'"+ team + "\'"+
                             "where not exists (" +
                             "  select 1" +
                             "  from upsert" +
                             "  where upsert.team_name = \'" +team+ "\');");
-            rs2.close();
             s2.close();
-            c2.close();
+            c.close();
         }
         catch(Exception e){
             System.err.println( e.getClass().getName()+": "+ e.getMessage() );
