@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="soccer.controller.MainFrameController">
+   <left>
+      <VBox alignment="CENTER" prefHeight="339.0" prefWidth="115.0" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" onAction="#ShowStadium" text="Stadium" />
+            <Button mnemonicParsing="false" text="Coach" />
+            <Button mnemonicParsing="false" text="Dealer" />
+            <Button mnemonicParsing="false" text="Player" />
+            <Button mnemonicParsing="false" text="League" />
+            <Button mnemonicParsing="false" onAction="#exit" text="Exit" />
+         </children>
+      </VBox>
+   </left>
+   <top>
+      <AnchorPane prefHeight="61.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Text fx:id="teamName" layoutX="467.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Team Name" textAlignment="RIGHT" wrappingWidth="119.3125">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+            <Text fill="#8d8d8dc9" layoutX="495.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Money:">
+               <font>
+                  <Font size="8.0" />
+               </font>
+            </Text>
+            <Text fx:id="teamMoney" layoutX="544.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="90000" textAlignment="RIGHT" />
+            <Text fx:id="pageName" layoutX="35.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page Name">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+   </top>
+</BorderPane>
