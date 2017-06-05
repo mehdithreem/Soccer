@@ -61,6 +61,20 @@ public class StadiumRepo {
             stadiumTeam.toiletQuality = rs.getInt("toilet_quality");
             stadiumTeam.seatQuality = rs.getInt("seat_quality");
 
+            rs.close();
+            s.close();
+
+            Statement s2 = c.createStatement();
+            ResultSet rs2 = s2.executeQuery
+                    ("select * from stadium where name = '"+ stadiumTeam.stadiumName +"'");
+            stadiumTeam.price = rs2.getInt("price");
+            stadiumTeam.capacity = rs2.getInt("capacity");
+
+            rs2.close();
+            s2.close();
+
+            c.close();
+
         }
         catch (Exception e){
             System.err.println( e.getClass().getName()+": "+ e.getMessage() );
@@ -75,9 +89,16 @@ public class StadiumRepo {
             ResultSet rs = s.executeQuery
                     ("update team set money = money - "+ 10*(100 - getByTeam(team).grassQuality)+ " where name = "+team );
 
+            rs.close();
+            s.close();
+
             Statement s2 = c.createStatement();
-            ResultSet rs2 = s.executeQuery
+            ResultSet rs2 = s2.executeQuery
                     ("update team_stadium set grass_quality = 100 where team_name = " + team );
+            rs2.close();
+            s2.close();
+
+            c.close();
         }
         catch(Exception e){
             System.err.println( e.getClass().getName()+": "+ e.getMessage() );
@@ -85,14 +106,84 @@ public class StadiumRepo {
     }
 
     public void fixSeat(String team) {
-        // #TODO: implement
+        try{
+            Connection c = ConnectionFactory.getConnection();
+            Statement s = c.createStatement();
+            ResultSet rs = s.executeQuery
+                    ("update team set money = money - "+ 15*(100 - getByTeam(team).seatQuality)+ " where name = "+team );
+
+            rs.close();
+            s.close();
+
+            Statement s2 = c.createStatement();
+            ResultSet rs2 = s2.executeQuery
+                    ("update team_stadium set seat_quality = 100 where team_name = " + team );
+            rs2.close();
+            s2.close();
+
+            c.close();
+        }
+        catch(Exception e){
+            System.err.println( e.getClass().getName()+": "+ e.getMessage() );
+        }
     }
 
     public void fixToilet(String team) {
-        // #TODO: implement
+        try{
+            Connection c = ConnectionFactory.getConnection();
+            Statement s = c.createStatement();
+            ResultSet rs = s.executeQuery
+                    ("update team set money = money - "+ 20*(100 - getByTeam(team).toiletQuality)+ " where name = "+team );
+
+            rs.close();
+            s.close();
+
+            Statement s2 = c.createStatement();
+            ResultSet rs2 = s2.executeQuery
+                    ("update team_stadium set toilet_quality = 100 where team_name = " + team );
+            rs2.close();
+            s2.close();
+
+            c.close();
+        }
+        catch(Exception e){
+            System.err.println( e.getClass().getName()+": "+ e.getMessage() );
+        }
     }
 
     public void buyStadium(String stadium, String team) {
-        // #TODO: implement
+        try{
+            Connection c = ConnectionFactory.getConnection();
+
+            Statement s = c.createStatement();
+            ResultSet rs = s.executeQuery
+                    ("select * from stadium where name = '"+ stadium +"'");
+            Integer price = rs.getInt("price");
+            rs.close();
+            s.close();
+
+            Statement s1 = c.createStatement();
+            ResultSet rs1 = s1.executeQuery
+                    ("update team set money = money - "+ price + " where name = "+team );
+            rs1.close();
+            s1.close();
+
+            Statement s2 = c.createStatement();
+            ResultSet rs2 = s2.executeQuery
+                    ("delete from team_stadium where team_name = " + team );
+            rs2.close();
+            s2.close();
+
+            Statement s3 = c.createStatement();
+            ResultSet rs3 = s3.executeQuery
+                    ("insert into team_stadium values( " + stadium + ", "+ team + " ,100 ,100 ,100 )" );
+            rs3.close();
+            s3.close();
+
+            c.close();
+        }
+        catch(Exception e){
+            System.err.println( e.getClass().getName()+": "+ e.getMessage() );
+        }
     }
 }
