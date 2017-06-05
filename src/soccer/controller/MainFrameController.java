@@ -35,15 +35,32 @@ public class MainFrameController {
     }
 
     public void ShowStadium() {
+        this.updateMoney();
         try {
             // Load person overview.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("presentation/Stadium.fxml"));
-            AnchorPane stadium = (AnchorPane) loader.load();
+            AnchorPane stadium = loader.load();
 
             // Set person overview into the center of root layout.
             SharedData.getData().main.getRootLayout().setCenter(stadium);
             pageName.setText("Stadium Manager");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void ShowCoach() {
+        this.updateMoney();
+        try {
+            // Load person overview.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("presentation/Coach.fxml"));
+            AnchorPane stadium = loader.load();
+
+            // Set person overview into the center of root layout.
+            SharedData.getData().main.getRootLayout().setCenter(stadium);
+            pageName.setText("Coach Manager");
         } catch (IOException e) {
             e.printStackTrace();
         }

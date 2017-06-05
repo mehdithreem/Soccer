@@ -12,7 +12,7 @@
       <VBox alignment="CENTER" prefHeight="339.0" prefWidth="115.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
             <Button mnemonicParsing="false" onAction="#ShowStadium" text="Stadium" />
-            <Button mnemonicParsing="false" text="Coach" />
+            <Button mnemonicParsing="false" onAction="#ShowCoach" text="Coach" />
             <Button mnemonicParsing="false" text="Dealer" />
             <Button mnemonicParsing="false" text="Player" />
             <Button mnemonicParsing="false" text="League" />
