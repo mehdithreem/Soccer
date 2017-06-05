@@ -49,12 +49,39 @@ public class StadiumRepo {
     }
 
     public StadiumTeam getByTeam(String team) {
-        // #TODO: implement
-        return new StadiumTeam();
+        StadiumTeam stadiumTeam = new StadiumTeam();
+        try{
+            Connection c = ConnectionFactory.getConnection();
+            Statement s = c.createStatement();
+            ResultSet rs = s.executeQuery("select * from team_stadium where team_name = '"+team+"'");
+
+            stadiumTeam.teamName = team;
+            stadiumTeam.stadiumName = rs.getString("stadium_name");
+            stadiumTeam.grassQuality = rs.getInt("grass_quality");
+            stadiumTeam.toiletQuality = rs.getInt("toilet_quality");
+            stadiumTeam.seatQuality = rs.getInt("seat_quality");
+
+        }
+        catch (Exception e){
+            System.err.println( e.getClass().getName()+": "+ e.getMessage() );
+        }
+        return stadiumTeam;
     }
 
     public void fixGrass(String team) {
-        // #TODO: implement
+        try{
+            Connection c = ConnectionFactory.getConnection();
+            Statement s = c.createStatement();
+            ResultSet rs = s.executeQuery
+                    ("update team set money = money - "+ 10*(100 - getByTeam(team).grassQuality)+ " where name = "+team );
+
+            Statement s2 = c.createStatement();
+            ResultSet rs2 = s.executeQuery
+                    ("update team_stadium set grass_quality = 100 where team_name = " + team );
+        }
+        catch(Exception e){
+            System.err.println( e.getClass().getName()+": "+ e.getMessage() );
+        }
     }
 
     public void fixSeat(String team) {
