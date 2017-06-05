@@ -16,13 +16,13 @@ INSERT INTO stadium_data VALUES
 
 --team
 INSERT INTO team VALUES
-	('esteghlal', 4000);
+	('esteghlal', 4000000);
 INSERT INTO team VALUES
-	('perspolic', 3000);
+	('perspolic', 3000000);
 INSERT INTO team VALUES
-	('naft', 2000);
+	('naft', 2000000);
 INSERT INTO team VALUES
-	('peikan', 1500);
+	('peikan', 1500000);
 
 --team_stadium
 INSERT INTO team_stadium VALUES

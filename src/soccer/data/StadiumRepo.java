@@ -53,7 +53,7 @@ public class StadiumRepo {
         try{
             Connection c = ConnectionFactory.getConnection();
             Statement s = c.createStatement();
-            ResultSet rs = s.executeQuery("select * from team_stadium where team_name = '"+team+"'");
+            ResultSet rs = s.executeQuery("select * from team_stadium where team_name = "+team);
 
             stadiumTeam.teamName = team;
             stadiumTeam.stadiumName = rs.getString("stadium_name");
@@ -69,6 +69,8 @@ public class StadiumRepo {
                     ("select * from stadium where name = '"+ stadiumTeam.stadiumName +"'");
             stadiumTeam.price = rs2.getInt("price");
             stadiumTeam.capacity = rs2.getInt("capacity");
+
+            System.out.println("StadiumTeam : "+stadiumTeam.teamName + " ," + stadiumTeam.stadiumName+ " ,"+ stadiumTeam.toiletQuality);
 
             rs2.close();
             s2.close();
@@ -152,35 +154,47 @@ public class StadiumRepo {
     }
 
     public void buyStadium(String stadium, String team) {
+        System.out.println("chete? :"+stadium+team);
         try{
             Connection c = ConnectionFactory.getConnection();
 
             Statement s = c.createStatement();
             ResultSet rs = s.executeQuery
-                    ("select * from stadium where name = '"+ stadium +"'");
+                    ("select * from stadium where name = \'"+ stadium +"\'");
             Integer price = rs.getInt("price");
+            System.out.println("Ba inja umad ke! "+price);
             rs.close();
             s.close();
+            c.close();
 
+
+            Connection c1 = ConnectionFactory.getConnection();
             Statement s1 = c.createStatement();
             ResultSet rs1 = s1.executeQuery
-                    ("update team set money = money - "+ price + " where name = "+team );
+                    ("update team set money = money - "+ price + " where name = \'"+team+"\'" );
             rs1.close();
             s1.close();
+            System.out.println("inja namiai?! ");
+            c1.close();
 
+
+            Connection c2 = ConnectionFactory.getConnection();
             Statement s2 = c.createStatement();
             ResultSet rs2 = s2.executeQuery
-                    ("delete from team_stadium where team_name = " + team );
+                    ("with upsert as (" +
+                            "  update team_stadium" +
+                            "  set (stadium_name, team_name , grass_quality, toilet_quality, seat_quality) = (\'"+stadium+ "\' , \'"+ team + "\' ,100, 100, 100)" +
+                            "  where team_name = \'" + team +
+                            "\'  returning *)" +
+                            "insert into stadium_name (stadium_name, team_name, grass_quality, toilet_quality, seat_quality)" +
+                            "select \'" +stadium+ "\' , \'"+ team + "\' , 100, 100, 100"+
+                            "where not exists (" +
+                            "  select 1" +
+                            "  from upsert" +
+                            "  where upsert.team_name = \'" +team+ "\');");
             rs2.close();
             s2.close();
-
-            Statement s3 = c.createStatement();
-            ResultSet rs3 = s3.executeQuery
-                    ("insert into team_stadium values( " + stadium + ", "+ team + " ,100 ,100 ,100 )" );
-            rs3.close();
-            s3.close();
-
-            c.close();
+            c2.close();
         }
         catch(Exception e){
             System.err.println( e.getClass().getName()+": "+ e.getMessage() );
