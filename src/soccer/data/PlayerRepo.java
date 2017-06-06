@@ -77,7 +77,7 @@ public class PlayerRepo {
         try{
             Connection c = ConnectionFactory.getConnection();
             Statement s = c.createStatement();
-            ResultSet rs = s.executeQuery("select * from person p , player plyr where p.name = plyr.name");
+            ResultSet rs = s.executeQuery("select * from person p , player plyr pli where p.name = plyr.name");
             while (rs.next()){
                 Player player =new Player (rs.getString("name"),
                         rs.getString("expertise"),
@@ -91,6 +91,8 @@ public class PlayerRepo {
                         rs.getInt("darvazebani") );
 
                 player.setPrice(rs.getInt("price"));
+                player.setShirtNumber(1);
+                player.setRole("defender");
                 result.add(player);
             }
             rs.close();
