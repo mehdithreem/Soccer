@@ -1,7 +1,11 @@
 package soccer.data;
 
+import soccer.ConnectionFactory;
 import soccer.model.Player;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,13 +19,53 @@ public class PlayerRepo {
     }
 
     public List<Player> getByTeam(String team, Integer year) {
-        // #TODO implement
         List<Player> result = new ArrayList<>();
 
-        result.add(new Player("Mahdi", "Goalkeeper", 12,12,12,12,
-                12,12,12,12,12,"bench", 1200));
-        result.add(new Player("Mahdi2", "Goalkeeper", 12,12,12,12,
-                12,12,12,12,12,"forward", 1200));
+        try{
+            Connection c = ConnectionFactory.getConnection();
+            Statement s = c.createStatement();
+            ResultSet rs = s.executeQuery
+                    ("select * from contract con, player plyr , person p " +
+                            "where con.team =\'"+team+
+                            "\' AND con.year = "+year+
+                            " AND con.person = plyr.name" +
+                            " AND plyr.name = p.name");
+
+            while ( rs.next() ) {
+                Player player =new Player (rs.getString("name"),
+                        rs.getString("expertise"),
+                        rs.getInt("amadegi"),
+                        rs.getInt("ghodrat_badani"),
+                        rs.getInt("ghodrat_pass"),
+                        rs.getInt("toop_giri"),
+                        rs.getInt("ghodrat_golzani"),
+                        rs.getInt("ghodrat_shoot"),
+                        rs.getInt("sorat"),
+                        rs.getInt("darvazebani") );
+
+                player.setPrice(rs.getInt("price"));
+                result.add(player);
+            }
+            rs.close();
+            s.close();
+
+            s = c.createStatement();
+            rs = s.executeQuery("select * from plays_in where team = \'" + team+ "\'");
+            while ( rs.next() ) {
+                String name = rs.getString("player");
+                for (Player player : result)
+                    if(player.getName().equals(name)){
+                        player.setShirtNumber(rs.getInt("shirt_number"));
+                        player.setRole(rs.getString("role"));
+                        break;
+                    }
+            }
+
+        }
+        catch(Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        }
+
         return result;
     }
 
@@ -30,8 +74,25 @@ public class PlayerRepo {
         return new ArrayList<>();
     }
 
-    public void updateRolesAndShirts(List<Player> players, String Team) {
-        // #TODO implement
+    public void updateRolesAndShirts(List<Player> players, String team) {
+        try{
+            Connection c = ConnectionFactory.getConnection();
+            Statement s = c.createStatement();
+            ResultSet rs = s.executeQuery("select * from plays_in where team = \'"+team+"\'");
+            while ( rs.next() ) {
+                String name = rs.getString("player");
+                for (Player player : players)
+                    if(player.getName().equals(name)){
+                        Statement s2 = c.createStatement();
+                        ResultSet rs2 = s2.executeUpdate
+                                        ("update plays_in set shirt_number = "+player.getShirtNumber()+ ", role =\'" + player.getRole() + "\' where player = \'"+player.getName()+"\'");
+                        break;
+                    }
+            }
+
+        }catch (Exception e){
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        }
     }
 
     public void sellPlayer(Player player, Integer year) {

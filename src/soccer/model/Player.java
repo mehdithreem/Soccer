@@ -20,7 +20,16 @@ public class Player {
 
     private Integer price;
 
-    public Player(String name, String expertise, Integer amadegi, Integer ghodrat_badani, Integer ghodrat_pass, Integer toop_giri, Integer ghodrat_golzani, Integer ghodrat_shoot, Integer sorat, Integer darvazebani, Integer shirtNumber, String role, Integer price) {
+    public Player(String name,
+                  String expertise,
+                  Integer amadegi,
+                  Integer ghodrat_badani,
+                  Integer ghodrat_pass,
+                  Integer toop_giri,
+                  Integer ghodrat_golzani,
+                  Integer ghodrat_shoot,
+                  Integer sorat,
+                  Integer darvazebani) {
         this.name = name;
         this.expertise = expertise;
         this.amadegi = amadegi;
@@ -31,9 +40,6 @@ public class Player {
         this.ghodrat_shoot = ghodrat_shoot;
         this.sorat = sorat;
         this.darvazebani = darvazebani;
-        this.shirtNumber = shirtNumber;
-        this.role = role;
-        this.price = price;
     }
 
     public String getName() {
