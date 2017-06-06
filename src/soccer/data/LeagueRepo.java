@@ -53,9 +53,11 @@ public class LeagueRepo {
             Statement s = c.createStatement();
 
             ResultSet rs = s.executeQuery(
-                    "select key, count(lt.team) as member_count " +
-                            "from league l, league_team lt " +
-                            "where (l.closed = FALSE) AND (lt.league = l.key)");
+                    "select count(team) as member_count, league as key " +
+                            "from league_team lt " +
+                            "group by league " +
+                            "having exists(select * from league l " +
+                                "where (l.key = lt.league) and (l.closed = false))");
 
             while (rs.next())
                 result.add(new PendingLeague(
@@ -206,7 +208,7 @@ public class LeagueRepo {
             s.close();
 
             Statement s2 = c.createStatement();
-            s.executeUpdate("UPDATE league set closed = TRUE WHERE key = " + league);
+            s2.executeUpdate("UPDATE league set closed = TRUE WHERE key = " + league);
             s2.close();
 
             c.close();

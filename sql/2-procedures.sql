@@ -434,3 +434,4 @@ end; $$
 language PLPGSQL;
 
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO soccer_access;
+GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public to soccer_access;

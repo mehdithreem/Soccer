@@ -249,6 +249,7 @@ INSERT INTO league_team(league, team) VALUES
 	(1, 'naft'),
 	(1, 'peikan');
 
+update league set closed = true where key = 1;
 select league_timeset(1);
 
 select batch_match(1, 0);
