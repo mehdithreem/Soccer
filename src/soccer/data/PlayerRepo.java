@@ -111,7 +111,7 @@ public class PlayerRepo {
             ResultSet rs = s.executeQuery("select name from player, contract where person = name AND year ="+year);
 
             while(rs.next()){
-                String name = rs.getString("player");
+                String name = rs.getString("name");
                 for(Player player : players)
                     if(player.getName().equals(name)){
                         players.remove(player);
