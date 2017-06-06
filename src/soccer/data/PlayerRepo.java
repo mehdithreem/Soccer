@@ -84,8 +84,10 @@ public class PlayerRepo {
                 for (Player player : players)
                     if(player.getName().equals(name)){
                         Statement s2 = c.createStatement();
-                        ResultSet rs2 = s2.executeUpdate
-                                        ("update plays_in set shirt_number = "+player.getShirtNumber()+ ", role =\'" + player.getRole() + "\' where player = \'"+player.getName()+"\'");
+                        s2.executeUpdate("update plays_in " +
+                                "set shirt_number = "+player.getShirtNumber()+
+                                ", role = \'" + player.getRole() + "\' " +
+                                "where player = \'"+ player.getName() + "\'");
                         break;
                     }
             }
