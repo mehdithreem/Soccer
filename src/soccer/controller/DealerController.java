@@ -40,7 +40,7 @@ public class DealerController {
 
     public void buy() {
         Dealer dealer = (Dealer) available.getSelectionModel().getSelectedItem();
-        DealerRepo.getRepository().buyDealer(dealer, SharedData.getData().currentYear);
+        DealerRepo.getRepository().buyDealer(dealer, SharedData.getData().currentYear, Session.getSession().getTeam());
         SharedData.getData().mainFrameController.ShowDealer();
     }
 }

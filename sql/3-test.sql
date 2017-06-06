@@ -97,6 +97,28 @@ INSERT INTO person VALUES
 	('afshin ghotbi', 340);
 INSERT INTO person VALUES
 	('amir ghalenoee', 360);
+INSERT INTO person VALUES
+	('sale 1', 320);
+INSERT INTO person VALUES
+	('sale 2', 340);
+INSERT INTO person VALUES
+	('sale 3', 360);
+INSERT INTO person VALUES
+	('sale 4', 340);
+INSERT INTO person VALUES
+	('sale 5', 360);
+INSERT INTO person VALUES
+	('dealer1', 100);
+INSERT INTO person VALUES
+	('dealer2', 500);
+INSERT INTO person VALUES
+	('dande', 300);
+INSERT INTO person VALUES
+    ('coach1', 330);
+INSERT INTO person VALUES
+   	('coach2', 140);
+INSERT INTO person VALUES
+   	('coach3', 410);
 
 --player
 INSERT INTO player VALUES
@@ -145,6 +167,16 @@ INSERT INTO player VALUES
 	('Alireza Haghighi', 'goalkeeper', 100, 100, 100, 100, 100, 100, 100, 100);
 INSERT INTO player VALUES
 	('Soroush Rafiei', 'goalkeeper', 100, 100, 100, 100, 100, 100, 100, 100);
+INSERT INTO player VALUES
+    ('sale 1', 'midfielder', 100, 100, 100, 100, 100, 100, 100, 100);
+INSERT INTO player VALUES
+    ('sale 2', 'midfielder', 100, 100, 100, 100, 100, 100, 100, 100);
+INSERT INTO player VALUES
+    ('sale 3', 'goalkeeper', 100, 100, 100, 100, 100, 100, 100, 100);
+INSERT INTO player VALUES
+    ('sale 4', 'goalkeeper', 100, 100, 100, 100, 100, 100, 100, 100);
+INSERT INTO player VALUES
+    ('sale 5', 'goalkeeper', 100, 100, 100, 100, 100, 100, 100, 100);
 
 --dealer
 INSERT INTO dealer VALUES
@@ -155,6 +187,12 @@ INSERT INTO dealer VALUES
 	('noon ye', 0.5);
 INSERT INTO dealer VALUES
 	('be lam', 0.3);
+INSERT INTO dealer VALUES
+	('dealer1', 1);
+INSERT INTO dealer VALUES
+	('dealer2', 0.5);
+INSERT INTO dealer VALUES
+	('dande', 0.3);
 
 --coach
 INSERT INTO coach VALUES
@@ -167,6 +205,12 @@ INSERT INTO coach VALUES
 	('Soroush Rafiei','goalkeeping', 14);
 INSERT INTO coach VALUES
 	('amir ghalenoee', 'fitness', 41);
+INSERT INTO coach VALUES
+    ('coach1', 'tactical', 33);
+INSERT INTO coach VALUES
+   	('coach2','goalkeeping', 14);
+INSERT INTO coach VALUES
+   	('coach3', 'fitness', 41);
 
 --buy dealer
 select buy_dealer('ghein gaf', 1396, 'esteghlal');

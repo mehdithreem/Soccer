@@ -136,33 +136,31 @@ create or replace function buy_dealer(
 	in_dealer varchar(20),
 	in_year int,
 	in_team varchar(20)
-) returns int as $$
+) returns void as $$
 declare
 	current_contract record;
-	error int;
 	dealer_price int;
+	current_dealer record;
 begin
-	error = 0;
-	for current_contract in
-		select * from contract c
-			where c.year = in_year and c.team = in_team
-	loop
-		if (exists(select * from dealer d where d.name = current_contract.person)) then
-			error = 1;
-			exit;
-		end if;
-	end loop;
 
-	if (error = 0) then
-		select price into dealer_price from person where person.name = in_dealer;
-		insert into contract values
-			(in_team, in_dealer, in_year);
-		update team
-			set money = money - dealer_price
-			where name = in_team;
-	end if;
+    select * into current_dealer from dealer d, contract c where c.team = in_team AND c.person = d.name  AND c.year = in_year;
 
-	return error;
+    with upsert as (update contract
+                    set person = in_dealer
+                    where year =in_year AND team = in_team AND person = current_dealer.name returning *)
+                    insert into contract (team, person, year)
+                                select in_team , in_dealer , in_year
+                                where not exists (
+                                select 1
+                                from upsert
+                                where upsert.person = in_dealer AND upsert.year = in_year);
+
+
+	select price into dealer_price from person where person.name = in_dealer;
+	update team
+		set money = money - dealer_price
+		where name = in_team;
+
 end; $$
 language PLPGSQL;
 
@@ -250,6 +248,8 @@ begin
 		ghodrat_badani_coeff = 1;
 		ghodrat_shoot_coeff = 1;
 	end case;
+
+    raise notice '%' ,in_player;
 
 	update player p
 		set
