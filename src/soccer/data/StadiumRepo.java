@@ -153,19 +153,18 @@ public class StadiumRepo {
             s1.close();
 
             Statement s2 = c.createStatement();
-            s2.execute
-                    ("with upsert as (" +
-                            "  update team_stadium" +
-                            "  set (stadium_name, team_name , grass_quality, toilet_quality, seat_quality) = (\'"+stadium.getName()+ "\' , \'"+ team + "\' ,1, 1, 1)" +
-                            "  where team_name = \'" + team +
-                            "\'  returning *)" +
-                            "insert into team_stadium (stadium_name, team_name) " +
-                            "select \'" +stadium.getName()+ "\' , \'"+ team + "\' "+
-                            "where not exists (" +
-                            "  select 1" +
-                            "  from upsert" +
-                            "  where upsert.team_name = \'" +team+ "\');");
+            s2.executeUpdate(
+                    "delete from team_stadium where team_name = \'" + team + "\'"
+            );
             s2.close();
+
+            Statement s3 = c.createStatement();
+            s3.executeUpdate(
+                    "insert into team_stadium VALUES " +
+                            "(\'" + stadium.getName() + "\', \'" + team + "\');"
+            );
+            s3.close();
+
             c.close();
         }
         catch(Exception e){

@@ -11,6 +11,8 @@ import soccer.SharedData;
 import soccer.data.DealerRepo;
 import soccer.model.Dealer;
 
+import java.text.DecimalFormat;
+
 /**
  * Created by mehdithreem on 6/6/2017 AD.
  */
@@ -29,7 +31,10 @@ public class DealerController {
         Dealer dealer = DealerRepo.getRepository().getByTeam(Session.getSession().getTeam(), SharedData.getData().currentYear);
 
         dealerName.setText(dealer.getName());
-        leverage.setText(String.valueOf(dealer.getLeverage() * 100) + "%");
+
+        DecimalFormat df = new DecimalFormat();
+        df.setMaximumFractionDigits(1);
+        leverage.setText(df.format(dealer.getLeverage() * 100) + "%");
 
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
         availableLeverage.setCellValueFactory(new PropertyValueFactory<>("leverage"));
