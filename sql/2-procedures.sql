@@ -205,6 +205,7 @@ begin
 	update team
 		set money = money - (player_price * dealer_leverage)
 		where name = in_team;
+  insert into plays_in VALUES (in_player, in_team);
 
 end; $$
 language PLPGSQL;

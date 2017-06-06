@@ -99,11 +99,11 @@ public class CoachRepo {
         try{
             Connection c = ConnectionFactory.getConnection();
             Statement s = c.createStatement();
-            s.executeUpdate("select buy_coach(\'"+name+"\' ,"+year+", \'"+team+"\')");
+            s.executeQuery("select buy_coach(\'"+name+"\' ,"+year+", \'"+team+"\')");
             s.close();
 
             Statement s2 = c.createStatement();
-            s2.executeUpdate("select influence_all (\'" +team+ "\' , \'" +name+ "\')");
+            s2.executeQuery("select influence_all (\'" +team+ "\' , \'" +name+ "\')");
 
             s2.close();
             c.close();
