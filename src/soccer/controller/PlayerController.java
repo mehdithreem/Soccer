@@ -15,6 +15,7 @@ import javafx.util.converter.DefaultStringConverter;
 import soccer.Session;
 import soccer.SharedData;
 import soccer.data.PlayerRepo;
+import soccer.model.Game;
 import soccer.model.Player;
 
 import java.lang.reflect.Field;
@@ -59,7 +60,8 @@ public class PlayerController {
 
             @Override
             public String toString(Integer object) {
-                System.out.println("####"+object);
+                if (object == null)
+                    return "";
                 return object.toString();
             }
 
@@ -91,9 +93,11 @@ public class PlayerController {
             currentCols.add(col);
         }
 
-        current.setItems(FXCollections.observableArrayList(
-                PlayerRepo.getRepository().getByTeam(Session.getSession().getTeam(), SharedData.getData().currentYear)
-        ));
+
+        List<Player> players =
+                PlayerRepo.getRepository().getByTeam(Session.getSession().getTeam(), SharedData.getData().currentYear);
+
+        current.setItems(FXCollections.observableArrayList(players));
 
         current.getColumns().addAll(currentCols);
 
