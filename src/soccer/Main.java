@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import soccer.controller.AdminFrameController;
 import soccer.controller.MainFrameController;
 import soccer.controller.SelectTeamController;
 
@@ -34,6 +35,28 @@ public class Main extends Application {
             MainFrameController controller = loader.getController();
             SharedData.getData().mainFrameController = controller;
             controller.ShowStadium();
+
+            // Show the scene containing the root layout.
+            Scene scene = new Scene(rootLayout);
+            primaryStage.setScene(scene);
+            primaryStage.sizeToScene();
+            primaryStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void initAdminFrame() {
+        try {
+            // Load root layout from fxml file.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("presentation/AdminFrame.fxml"));
+            rootLayout = (BorderPane) loader.load();
+
+            AdminFrameController controller = loader.getController();
+            SharedData.getData().adminFrameController = controller;
+            controller.ShowLeague();
 
             // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayout);

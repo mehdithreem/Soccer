@@ -1,5 +1,6 @@
 package soccer;
 
+import soccer.controller.AdminFrameController;
 import soccer.controller.MainFrameController;
 
 /**
@@ -13,5 +14,6 @@ public class SharedData {
 
     public Main main;
     public MainFrameController mainFrameController;
+    public AdminFrameController adminFrameController;
     public Integer currentYear;
 }

@@ -33,4 +33,9 @@ public class SelectTeamController {
         this.initialize();
         TeamNameTF.setText("");
     }
+
+    public void gotoAdmin() {
+        SharedData.getData().main.getPrimaryStage().close();
+        SharedData.getData().main.initAdminFrame();
+    }
 }
