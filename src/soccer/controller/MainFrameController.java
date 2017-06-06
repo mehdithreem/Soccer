@@ -93,4 +93,18 @@ public class MainFrameController {
             e.printStackTrace();
         }
     }
+
+    public void ShowLeague() {
+        this.updateMoney();
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("presentation/League.fxml"));
+            AnchorPane stadium = loader.load();
+
+            SharedData.getData().main.getRootLayout().setCenter(stadium);
+            pageName.setText("League Manager");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -15,7 +15,7 @@
             <Button mnemonicParsing="false" onAction="#ShowCoach" text="Coach" />
             <Button mnemonicParsing="false" onAction="#ShowDealer" text="Dealer" />
             <Button mnemonicParsing="false" onAction="#ShowPlayer" text="Player" />
-            <Button mnemonicParsing="false" text="League" />
+            <Button mnemonicParsing="false" onAction="#ShowLeague" text="League" />
             <Button mnemonicParsing="false" onAction="#exit" text="Exit" />
          </children>
       </VBox>
