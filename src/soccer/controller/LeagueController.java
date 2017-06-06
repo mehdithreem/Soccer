@@ -36,7 +36,7 @@ public class LeagueController {
         }
 
         TableColumn col0 = new TableColumn("League");
-        col0.setCellValueFactory(new PropertyValueFactory<>("host_team"));
+        col0.setCellValueFactory(new PropertyValueFactory<>("league"));
 
         TableColumn col1 = new TableColumn("Time");
         col1.setCellValueFactory(new PropertyValueFactory<>("start_time"));
@@ -66,6 +66,10 @@ public class LeagueController {
 
         games.getColumns().addAll(col0,col1,col2,col3,col4);
         games.setItems(FXCollections.observableArrayList(gameRows));
+
+        List<Integer> availableLeagues = LeagueRepo.getRepository().getAvailable(Session.getSession().getTeam());
+
+        leagueCB.setItems(FXCollections.observableArrayList(availableLeagues));
     }
 
     public void join() {
