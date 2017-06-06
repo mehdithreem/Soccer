@@ -37,7 +37,10 @@ public class Main extends Application {
             controller.ShowStadium();
 
             // Show the scene containing the root layout.
+
             Scene scene = new Scene(rootLayout);
+            scene.getStylesheets().add
+                    (Main.class.getResource("khoshgel.css").toExternalForm());
             primaryStage.setScene(scene);
             primaryStage.sizeToScene();
             primaryStage.show();
@@ -60,6 +63,8 @@ public class Main extends Application {
 
             // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayout);
+            scene.getStylesheets().add
+                    (Main.class.getResource("khoshgel.css").toExternalForm());
             primaryStage.setScene(scene);
             primaryStage.sizeToScene();
             primaryStage.show();
@@ -80,6 +85,8 @@ public class Main extends Application {
 
             // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayout);
+            scene.getStylesheets().add
+                    (Main.class.getResource("khoshgel.css").toExternalForm());
             primaryStage.setScene(scene);
             primaryStage.sizeToScene();
             primaryStage.show();
