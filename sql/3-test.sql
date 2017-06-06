@@ -2,15 +2,15 @@
 INSERT INTO stadium_data VALUES
 	('azadi', 10);
 INSERT INTO stadium_data VALUES
-	('foolad_e_khoozestan', 20);
+	('foolad', 20);
 INSERT INTO stadium_data VALUES
-	('shahid_kazemi', 15);
+	('kazemi', 15);
 INSERT INTO stadium_data VALUES
-	('emam_reza', 10);
+	('emam', 10);
 INSERT INTO stadium_data VALUES
-	('naghsh_e_jahan', 20);
+	('jahan', 20);
 INSERT INTO stadium_data VALUES
-	('shahid_shiroodi', 10);
+	('shiroodi', 10);
 INSERT INTO stadium_data VALUES
 	('takhti', 10);
 
@@ -30,9 +30,9 @@ INSERT INTO team_stadium VALUES
 INSERT INTO team_stadium VALUES
 	('takhti', 'perspolic');
 INSERT INTO team_stadium VALUES
-	('naghsh_e_jahan', 'naft');
+	('jahan', 'naft');
 INSERT INTO team_stadium VALUES
-	('shahid_kazemi', 'peikan');
+	('kazemi', 'peikan');
 
 --person
 INSERT INTO person VALUES

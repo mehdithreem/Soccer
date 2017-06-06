@@ -159,7 +159,16 @@ public class PlayerRepo {
         // #TODO implement
     }
 
-    public void buyPlayer(Player player, String Team, Integer year) {
-        // #TODO implement
+    public void buyPlayer(Player player, String team, Integer year) {
+        try{
+            Connection c = ConnectionFactory.getConnection();
+            Statement s = c.createStatement();
+            s.executeUpdate("select buy_player(\'"+player.getName()+"\' ,"+year+", \'"+team+"\')");
+            s.close();
+            c.close();
+
+        }catch (Exception e){
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        }
     }
 }

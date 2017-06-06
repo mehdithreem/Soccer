@@ -59,6 +59,7 @@ public class PlayerController {
 
             @Override
             public String toString(Integer object) {
+                System.out.println("####"+object);
                 return object.toString();
             }
 
